@@ -6,6 +6,7 @@
     <title>战斗人生游戏网站</title>
   </head>
   <body>
+    <jsp:include page="jsp/addFighter.jsp" flush="true"></jsp:include>
     <jsp:include page="jsp/listFighters.jsp" flush="true"></jsp:include>
   </body>
 </html>
