@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import fl.core.domain.Fighter;
 import fl.core.service.FighterService;
-import fl.core.service.FighterServiceImpl;
-import fl.site.bean.StudentVO;
+import fl.core.service.impl.FighterServiceImpl;
+import fl.site.bean.FighterVO;
 
 public class AddFighterServlet extends HttpServlet {
     
@@ -21,7 +21,7 @@ public class AddFighterServlet extends HttpServlet {
     private FighterService fighterService = new FighterServiceImpl();
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        StudentVO studentVO = new StudentVO();
+        FighterVO studentVO = new FighterVO();
         studentVO.setName(request.getParameter("name"));
         studentVO.setNickName(request.getParameter("nickName"));
         
@@ -48,7 +48,7 @@ public class AddFighterServlet extends HttpServlet {
         }
     }
 
-    private String validate(StudentVO studentVO) {
+    private String validate(FighterVO studentVO) {
         if(studentVO.getName() == null || studentVO.getName().trim().equals("")) {
             return "姓名不能为空";
         }

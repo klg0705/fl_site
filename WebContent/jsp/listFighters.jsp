@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="fl.core.domain.*" %>
 <%@ page import="fl.core.service.*" %>
+<%@ page import="fl.core.service.impl.*" %>
 <%@ page import="java.util.List" %>
 
 <div style="clear:both;">

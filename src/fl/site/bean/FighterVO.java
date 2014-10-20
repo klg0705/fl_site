@@ -1,6 +1,6 @@
 package fl.site.bean;
 
-public class StudentVO {
+public class FighterVO {
 
     private String name;
 
