@@ -13,6 +13,7 @@ String errorMsg = (String) request.getAttribute("error");
   <form name="addFighterForm" method="post" action="<%= request.getContextPath() %>/addFighter" onsubmit="return validateAddInput();">
     姓名：<input type="text" name="name"><br />
     昵称：<input type="text" name="nickName"><br />
+    <input type="hidden" name="deityId" value="<%= request.getAttribute("DEITY_ID") %>">
     <input type="submit" value="提交">
   </form>
 <% if(errorMsg != null) { %>

@@ -6,8 +6,8 @@
 
 <div style="clear:both;">
 <% 
-FighterService fs = new FighterServiceImpl();
-List<Fighter> fighters = fs.listAllFighters();
+Deity deity = (Deity) request.getAttribute("DEITY");
+List<Fighter> fighters = deity.getFighters();
 
 for(Fighter fighter : fighters) {
 %>

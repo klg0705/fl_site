@@ -1,7 +1,6 @@
 package fl.site.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fl.core.domain.Fighter;
+import fl.core.service.DeityService;
 import fl.core.service.FighterService;
+import fl.core.service.impl.DeityServiceImpl;
 import fl.core.service.impl.FighterServiceImpl;
 import fl.site.bean.FighterVO;
 
@@ -20,23 +21,23 @@ public class AddFighterServlet extends HttpServlet {
     
     private FighterService fighterService = new FighterServiceImpl();
     
+    private DeityService deityService = new DeityServiceImpl();
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-        FighterVO studentVO = new FighterVO();
-        studentVO.setName(request.getParameter("name"));
-        studentVO.setNickName(request.getParameter("nickName"));
+        FighterVO fighterVO = new FighterVO();
+        fighterVO.setName(request.getParameter("name"));
+        fighterVO.setNickName(request.getParameter("nickName"));
+        fighterVO.setDeityId(request.getParameter("deityId"));
         
-        String error = validate(studentVO);
+        String error = validate(fighterVO);
         if(error != null) {
             request.setAttribute("error", error);
         } else {
             Fighter fighter = new Fighter();
-            fighter.setName(studentVO.getName());
-            fighter.setNickName(studentVO.getNickName());
-            try {
-                fighterService.addFighter(fighter);
-            } catch (SQLException e) {
-                throw new ServletException(e.getMessage(), e.getCause());
-            }
+            fighter.setName(fighterVO.getName());
+            fighter.setNickName(fighterVO.getNickName());
+            fighter.setDeity(deityService.get(Integer.parseInt(fighterVO.getDeityId())));
+            fighterService.add(fighter);
             request.setAttribute("newFighter", fighter);
         }
 

@@ -8,6 +8,8 @@ public class FighterVO {
 
     private String id;
 
+    private String deityId;
+
     public String getName() {
         return name;
     }
@@ -30,6 +32,14 @@ public class FighterVO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDeityId() {
+        return deityId;
+    }
+
+    public void setDeityId(String deityId) {
+        this.deityId = deityId;
     }
 
 }
