@@ -4,7 +4,7 @@
 <%@ page import="fl.core.service.impl.*" %>
 <%@ page import="java.util.List" %>
 
-<div style="clear:both;">
+<div style="clear:both;" id="fighterList">
 <% 
 Deity deity = (Deity) request.getAttribute("DEITY");
 List<Fighter> fighters = deity.getFighters();

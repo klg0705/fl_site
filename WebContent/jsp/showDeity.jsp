@@ -2,12 +2,13 @@
 <%@ page import="fl.core.domain.*" %>
 <%@ page import="fl.core.service.*" %>
 <%@ page import="fl.core.service.impl.*" %>
+<%@ page import="fl.core.dao.impl.*" %>
 <%@ page import="java.util.List" %>
 
 <div style="clear:both;">
 <% 
 Deity deity = null;
-DeityService serv = new DeityServiceImpl();
+DeityService serv = new DeityServiceImpl(new DeityDAOImpl());
 List<Deity> deities = serv.getAll();
 if(deities == null || deities.size() == 0) {
     deity = new Deity();

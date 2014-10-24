@@ -8,6 +8,7 @@
   <body>
     <jsp:include page="jsp/showDeity.jsp" flush="true"></jsp:include>
     <jsp:include page="jsp/addFighter.jsp" flush="true"></jsp:include>
+    <jsp:include page="jsp/pk.jsp" flush="true"></jsp:include>
     <jsp:include page="jsp/listFighters.jsp" flush="true"></jsp:include>
   </body>
 </html>

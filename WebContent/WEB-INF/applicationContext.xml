@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="deityDAOImpl" class="fl.core.dao.impl.DeityDAOImpl"></bean>
+    <bean id="fighterDAOImpl" class="fl.core.dao.impl.FighterDAOImpl"></bean>
+
+    <bean id="deityServiceImpl" class="fl.core.service.impl.DeityServiceImpl">
+        <property name="deityDAO" ref="deityDAOImpl" />
+    </bean>
+    <bean id="fighterServiceImpl" class="fl.core.service.impl.FighterServiceImpl">
+        <property name="fighterDAO" ref="fighterDAOImpl" />
+    </bean>
+
+    <bean id="fightWS" class="fl.site.wsclient.calc.fight.FightServiceImplService"></bean>
+    <bean id="fightService" class="fl.site.wsclient.calc.FightServiceWSImpl">
+        <property name="service" ref="fightWS" />
+    </bean>
+</beans>
