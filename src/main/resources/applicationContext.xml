@@ -12,9 +12,18 @@
     <bean id="fighterServiceImpl" class="fl.core.service.impl.FighterServiceImpl">
         <property name="fighterDAO" ref="fighterDAOImpl" />
     </bean>
+    <bean id="fightService" class="fl.core.service.impl.FightServiceImpl">
+        <property name="fighterService" ref="fighterServiceImpl" />
+        <property name="game" ref="game" />
+    </bean>
 
-    <bean id="fightWS" class="fl.site.wsclient.calc.fight.FightServiceImplService"></bean>
-    <bean id="fightService" class="fl.site.wsclient.calc.FightServiceWSImpl">
-        <property name="service" ref="fightWS" />
+    <bean id="game" class="fl.core.fight.Game"></bean>
+
+    <bean name="/fighter" class="fl.site.struts.action.FighterAction">
+        <property name="fighterService" ref="fighterServiceImpl" />
+        <property name="deityService" ref="deityServiceImpl" />
+    </bean>
+    <bean name="/deity" class="fl.site.struts.action.DeityAction">
+        <property name="deityService" ref="deityServiceImpl" />
     </bean>
 </beans>

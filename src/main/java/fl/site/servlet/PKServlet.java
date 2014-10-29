@@ -1,7 +1,6 @@
 package fl.site.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +14,8 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import fl.core.domain.Fighter;
+import fl.core.service.FightService;
 import fl.core.service.FighterService;
-import fl.site.service.FightService;
 
 public class PKServlet extends HttpServlet {
 
@@ -54,16 +53,13 @@ public class PKServlet extends HttpServlet {
         if (fighterId1 == null || fighterId2 == null) {
             message = "No fighters selected.";
         } else {
-            Fighter fighter1 = fighterService.get(Integer.parseInt(fighterId1));
-            Fighter fighter2 = fighterService.get(Integer.parseInt(fighterId2));
-            List<Fighter> fighters = new ArrayList<Fighter>();
-            fighters.add(fighter1);
-            fighters.add(fighter2);
+            String[] fighterIds = new String[2];
+            fighterIds[0] = fighterId1;
+            fighterIds[1] = fighterId2;
+            List<Fighter> fighters = fightService.fight(fighterIds);
 
-            fighters = fightService.fight(fighters);
-
-            fighter1 = fighters.get(0);
-            fighter2 = fighters.get(1);
+            Fighter fighter1 = fighters.get(0);
+            Fighter fighter2 = fighters.get(1);
             if (fighter1.getHp() <= 0) {
                 message = fighter2.getName() + "(" + fighter2.getHp() + ") is winner! " + fighter1.getName()
                         + " is killed...";

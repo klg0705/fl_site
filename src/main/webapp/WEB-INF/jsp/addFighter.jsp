@@ -2,23 +2,22 @@
 <%@ page import="fl.core.domain.*" %>
 <%@ page import="fl.core.service.*" %>
 <%@ page import="java.util.List" %>
+<%@ taglib uri="http://struts.apache.org/tags-html"	prefix="html"%>
 
 <% 
 Fighter fighter = (Fighter) request.getAttribute("newFighter"); 
-String errorMsg = (String) request.getAttribute("error");
+String deityId = String.valueOf(session.getAttribute("DEITY_ID"));
 %>
 <div style="clear:both; height:250px;">
 <div style="float:left; width:600px;">
   <b>培养新人</b>
-  <form name="addFighterForm" method="post" action="<%= request.getContextPath() %>/addFighter" onsubmit="return validateAddInput();">
-    姓名：<input type="text" name="name"><br />
-    昵称：<input type="text" name="nickName"><br />
-    <input type="hidden" name="deityId" value="<%= request.getAttribute("DEITY_ID") %>">
-    <input type="submit" value="提交">
-  </form>
-<% if(errorMsg != null) { %>
-  <span><%= errorMsg %></span>
-<% } %>
+  <html:form action="/fighter" onsubmit="validateAddInput();">
+    姓名：<html:text property="fighter.name" /><html:errors property="fighter.name" /><br />
+    昵称：<html:text property="fighter.nickName" /><html:errors property="fighter.nickName" /><br />
+    <html:hidden property="fighter.deity.id" value="<%= deityId %>" />
+    <html:hidden property="action" value="add" />
+    <html:submit value="提交" />
+  </html:form>
 </div>
 <% if(fighter != null) { %>
 <div style="float:left;">
@@ -33,10 +32,10 @@ String errorMsg = (String) request.getAttribute("error");
 
 <script type="text/javascript">  
   function validateAddInput(channelform) {
-    if(addFighterForm.name.value == "") {  
+    if(fighterForm["fighter.name"].value == "") {  
       alert("请输入姓名");  
       return false;  
-    } else if (addFighterForm.nickName.value == "") {  
+    } else if (fighterForm["fighter.nickName"].value == "") {  
       alert("请输入昵称");  
       return false;  
     }

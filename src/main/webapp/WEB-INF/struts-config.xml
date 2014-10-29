@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.4//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_4.dtd">
+
+<struts-config>
+    <form-beans>
+        <form-bean name="fighterForm" type="fl.site.struts.form.FighterForm">
+        </form-bean>
+        <form-bean name="deityForm" type="fl.site.struts.form.DeityForm">
+        </form-bean>
+    </form-beans>
+    <action-mappings>
+        <action path="/fighter" input="/frontpage2.jsp" type="fl.site.struts.action.FighterAction" name="fighterForm"
+            scope="request" parameter="action">
+            <forward name="initAdd" path="/WEB-INF/jsp/addFighter.jsp"></forward>
+            <forward name="add" path="/frontpage2.jsp"></forward>
+            <forward name="listByDeity" path="/WEB-INF/jsp/listFighters.jsp"></forward>
+        </action>
+        <action path="/deity" type="fl.site.struts.action.DeityAction" name="deityForm" scope="request"
+            parameter="action">
+            <forward name="view" path="/WEB-INF/jsp/showDeity.jsp"></forward>
+        </action>
+    </action-mappings>
+    <controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"></controller>
+    <message-resources parameter="StrutsResources"></message-resources>
+</struts-config>
