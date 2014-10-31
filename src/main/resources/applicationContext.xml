@@ -26,4 +26,6 @@
     <bean name="/deity" class="fl.site.struts.action.DeityAction">
         <property name="deityService" ref="deityServiceImpl" />
     </bean>
+    <bean name="/index" class="org.apache.struts.actions.ForwardAction">
+    </bean>
 </beans>

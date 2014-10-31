@@ -1,23 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="fl.core.domain.*" %>
-<%@ page import="fl.core.service.*" %>
-<%@ page import="fl.core.service.impl.*" %>
-<%@ page import="java.util.List" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 
 <div style="clear:both;" id="fighterList">
-<% 
-Deity deity = (Deity) request.getAttribute("DEITY");
-List<Fighter> fighters = deity.getFighters();
-
-for(Fighter fighter : fighters) {
-%>
+<c:forEach items="${ DEITY.fighters }" var="fighter">
   <div style="float:left; width:220px;">
-    <p style="display:none"><%= fighter.getId() %></p>
-    <img src="<%=request.getContextPath() %>/images/defaultFighter.jpg" /><br />
-    <%= fighter.getName() + " (" + fighter.getNickName() + ")" %><br />
-    <%= "生命: " + fighter.getHp() + " / " + fighter.getMaxHp() %><br />
-    <%= "攻击: " + fighter.getAttack() %><br />
-    <%= "防御: " + fighter.getDefence() %><br />
+    <p style="display:none">${ fighter.id }</p>
+    <img src="${pageContext.request.contextPath}/images/defaultFighter.jpg" /><br />
+    ${fighter.name} (${fighter.nickName})<br />
+    <fmt:message bundle="${ siteRes }" key="fighter.hp"></fmt:message>: ${fighter.hp} / ${fighter.maxHp} <br />
+    <fmt:message bundle="${ siteRes }" key="fighter.attack"></fmt:message>: ${fighter.attack}<br />
+    <fmt:message bundle="${ siteRes }" key="fighter.defence"></fmt:message>: ${fighter.defence}<br />
   </div>
-<% } %>
+</c:forEach>
 </div>

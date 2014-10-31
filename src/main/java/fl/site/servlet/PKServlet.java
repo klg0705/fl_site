@@ -16,6 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import fl.core.domain.Fighter;
 import fl.core.service.FightService;
 import fl.core.service.FighterService;
+import fl.site.util.SiteMessages;
 
 public class PKServlet extends HttpServlet {
 
@@ -51,7 +52,7 @@ public class PKServlet extends HttpServlet {
         String fighterId1 = request.getParameter("fighter1");
         String fighterId2 = request.getParameter("fighter2");
         if (fighterId1 == null || fighterId2 == null) {
-            message = "No fighters selected.";
+            message = SiteMessages.getCLString("pk.needmorefighters");
         } else {
             String[] fighterIds = new String[2];
             fighterIds[0] = fighterId1;
@@ -61,19 +62,19 @@ public class PKServlet extends HttpServlet {
             Fighter fighter1 = fighters.get(0);
             Fighter fighter2 = fighters.get(1);
             if (fighter1.getHp() <= 0) {
-                message = fighter2.getName() + "(" + fighter2.getHp() + ") is winner! " + fighter1.getName()
-                        + " is killed...";
+                message = SiteMessages.getCLString("pk.result", fighter2.getName(), fighter2.getHp(),
+                        fighter1.getName());
                 fighterService.deleteById(fighter1.getId());
             } else {
-                message = fighter1.getName() + "(" + fighter1.getHp() + ") is winner! " + fighter2.getName()
-                        + " is killed...";
+                message = SiteMessages.getCLString("pk.result", fighter1.getName(), fighter1.getHp(),
+                        fighter2.getName());
                 fighterService.deleteById(fighter2.getId());
             }
         }
 
         request.setAttribute("message", message);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.do");
         try {
             dispatcher.forward(request, response);
         } catch (IOException e) {

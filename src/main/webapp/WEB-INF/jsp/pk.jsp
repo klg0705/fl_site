@@ -1,18 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="fl.core.domain.*"%>
-<%@ page import="fl.core.service.*"%>
-<%@ page import="fl.core.service.impl.*"%>
-<%@ page import="java.util.List"%>
-
-<%
-    String message = (String) request.getAttribute("message");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 
 <div style="clear: both; height: 30px;">
   <div>
-    <form id="pkForm" name="pkForm" method="post" action="<%=request.getContextPath()%>/pk">
+    <form id="pkForm" name="pkForm" method="post" action="${pageContext.request.contextPath}/pk">
       <input type="button" name="pk" onclick="pkClicked()" value="PK" /> &nbsp;&nbsp;&nbsp;
-      <%= message == null ? "" : message %>
+      ${message}
     </form>
   </div>
 </div>
