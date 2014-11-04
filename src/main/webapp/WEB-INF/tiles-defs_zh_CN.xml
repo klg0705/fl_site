@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+          "-//Apache Software Foundation//DTD Tiles Configuration 1.3//EN"
+          "http://jakarta.apache.org/struts/dtds/tiles-config_1_3.dtd">
+
+<tiles-definitions>
+    <definition name="frontpageBase" path="/WEB-INF/jsp/frontpage.jsp">
+        <put name="title" value="战斗人生" />
+    </definition>
+</tiles-definitions>

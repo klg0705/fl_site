@@ -4,10 +4,13 @@
           "http://jakarta.apache.org/struts/dtds/tiles-config_1_3.dtd">
 
 <tiles-definitions>
-    <definition name="frontpage" path="/WEB-INF/jsp/frontpage.jsp">
+    <definition name="frontpage" extends="frontpageBase">
         <put name="deityInfo" value="/deity.do?action=view" />
         <put name="addFigher" value="/fighter.do?action=initAdd" />
         <put name="pkZone" value="/WEB-INF/jsp/pk.jsp" />
         <put name="myFighters" value="/fighter.do?action=listByDeity" />
+    </definition>
+    <definition name="frontpageBase" path="/WEB-INF/jsp/frontpage.jsp">
+        <put name="title" value="Fighting Life" />
     </definition>
 </tiles-definitions>

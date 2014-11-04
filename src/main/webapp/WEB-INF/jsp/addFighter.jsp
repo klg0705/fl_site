@@ -25,14 +25,14 @@
 </c:if>
 </div>
 
-<script type="text/javascript">  
+<script type="text/javascript">
   function validateAddInput(channelform) {
-    if(fighterForm["fighter.name"].value == "") {  
-      alert("请输入姓名");  
-      return false;  
-    } else if (fighterForm["fighter.nickName"].value == "") {  
-      alert("请输入昵称");  
-      return false;  
+    if(fighterForm["fighter.name"].value == "") {
+      alert("请输入姓名");
+      return false;
+    } else if (fighterForm["fighter.nickName"].value == "") {
+      alert("请输入昵称");
+      return false;
     }
   }
 </script>
