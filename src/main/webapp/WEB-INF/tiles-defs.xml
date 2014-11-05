@@ -5,6 +5,7 @@
 
 <tiles-definitions>
     <definition name="frontpage" extends="frontpageBase">
+        <put name="login" value="/login.do?action=initLogin" />
         <put name="deityInfo" value="/deity.do?action=view" />
         <put name="addFigher" value="/fighter.do?action=initAdd" />
         <put name="pkZone" value="/WEB-INF/jsp/pk.jsp" />

@@ -38,7 +38,7 @@ public class DeityAction extends DispatchAction {
         if (deities == null || deities.size() == 0) {
             deity = new Deity();
             deity.setName("GOD");
-            deityService.add(deity);
+            deityService.create(deity);
         } else {
             deity = deities.get(0);
         }

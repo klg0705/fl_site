@@ -9,6 +9,8 @@
         </form-bean>
         <form-bean name="deityForm" type="fl.site.struts.form.DeityForm">
         </form-bean>
+        <form-bean name="personForm" type="fl.site.struts.form.PersonForm">
+        </form-bean>
     </form-beans>
     <action-mappings>
         <action path="/fighter" input="frontpage" name="fighterForm" scope="request" parameter="action">
@@ -18,6 +20,15 @@
         </action>
         <action path="/deity" name="deityForm" scope="request" parameter="action">
             <forward name="view" path="/WEB-INF/jsp/showDeity.jsp"></forward>
+        </action>
+        <action path="/login" input="frontpage" name="personForm" scope="request" parameter="action">
+            <forward name="initLogin" path="/WEB-INF/jsp/person/login.jsp"></forward>
+            <forward name="login" path="frontpage"></forward>
+            <forward name="logout" path="frontpage"></forward>
+        </action>
+        <action path="/person" input="/WEB-INF/jsp/person/addPerson.jsp" name="personForm" scope="request" parameter="action">
+            <forward name="initAdd" path="/WEB-INF/jsp/person/addPerson.jsp"></forward>
+            <forward name="add" path="frontpage"></forward>
         </action>
         <action path="/index" parameter="frontpage">
         </action>

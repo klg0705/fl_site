@@ -26,7 +26,7 @@
 </div>
 
 <script type="text/javascript">
-  function validateAddInput(channelform) {
+  function validateAddInput() {
     if(fighterForm["fighter.name"].value == "") {
       alert("请输入姓名");
       return false;

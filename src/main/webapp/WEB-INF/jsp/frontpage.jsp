@@ -12,6 +12,9 @@
   </head>
   <body>
     <div>
+      <tiles:insert name="login"/>
+    </div>
+    <div>
       <tiles:insert name="deityInfo"/>
     </div>
     <div>

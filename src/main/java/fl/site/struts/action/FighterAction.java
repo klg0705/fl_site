@@ -51,7 +51,7 @@ public class FighterAction extends DispatchAction {
         fighter.setName(fighterBean.getName());
         fighter.setNickName(fighterBean.getNickName());
         fighter.setDeity(deityService.get(fighterBean.getDeity().getId()));
-        fighterService.add(fighter);
+        fighterService.create(fighter);
         request.setAttribute("newFighter", fighter);
 
         return mapping.findForward("add");

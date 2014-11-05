@@ -21,12 +21,6 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" destroy-method="destroy">
         <property name="dataSource" ref="dataSource" />
-        <property name="mappingResources">
-            <list>
-                <value>fl/core/domain/Deity.hbm.xml</value>
-                <value>fl/core/domain/Fighter.hbm.xml</value>
-            </list>
-        </property>
         <property name="hibernateProperties">
             <value>
                 hibernate.dialect=org.hibernate.dialect.MySQLDialect
@@ -36,6 +30,12 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
                 hibernate.use_sql_comments=false
             </value>
         </property>
+        <property name="packagesToScan">
+            <list>
+                <value>fl.user.domain</value>
+                <value>fl.core.domain</value>
+            </list>
+        </property>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -44,12 +44,13 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <tx:annotation-driven transaction-manager="transactionManager" />
 
-    <context:component-scan base-package="fl.core.service.*" use-default-filters="false" />
-
     <bean id="deityDAOImpl" class="fl.core.dao.impl.DeityDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
     <bean id="fighterDAOImpl" class="fl.core.dao.impl.FighterDAOImpl">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="personDAOImpl" class="fl.user.dao.impl.PersonDAOImpl">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
@@ -58,6 +59,9 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
     </bean>
     <bean id="fighterServiceImpl" class="fl.core.service.impl.FighterServiceImpl">
         <property name="fighterDAO" ref="fighterDAOImpl" />
+    </bean>
+    <bean id="personServiceImpl" class="fl.user.service.impl.PersonServiceImpl">
+        <property name="personDAO" ref="personDAOImpl" />
     </bean>
     <bean id="fightService" class="fl.core.service.impl.FightServiceImpl">
         <property name="fighterService" ref="fighterServiceImpl" />
@@ -72,6 +76,12 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
     </bean>
     <bean name="/deity" class="fl.site.struts.action.DeityAction">
         <property name="deityService" ref="deityServiceImpl" />
+    </bean>
+    <bean name="/login" class="fl.site.struts.action.LoginAction">
+        <property name="personService" ref="personServiceImpl" />
+    </bean>
+    <bean name="/person" class="fl.site.struts.action.PersonAction">
+        <property name="personService" ref="personServiceImpl" />
     </bean>
     <bean name="/index" class="org.apache.struts.actions.ForwardAction">
     </bean>

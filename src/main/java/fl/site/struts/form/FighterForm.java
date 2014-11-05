@@ -41,10 +41,10 @@ public class FighterForm extends ActionForm {
 
         ActionErrors errors = new ActionErrors();
         if (fighter.getName() == null || fighter.getName().trim().equals("")) {
-            errors.add("fighter.name", new ActionMessage("fighter.add.name.notEmpty"));
+            errors.add("fighter.name", new ActionMessage("general.message.notEmpty", "Name"));
         }
         if (fighter.getNickName() == null || fighter.getNickName().trim().equals("")) {
-            errors.add("fighter.nickName", new ActionMessage("fighter.add.nickName.notEmpty"));
+            errors.add("fighter.nickName", new ActionMessage("general.message.notEmpty", "Nickname"));
         }
         return errors;
     }
