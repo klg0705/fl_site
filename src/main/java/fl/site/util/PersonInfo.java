@@ -1,29 +1,31 @@
 package fl.site.util;
 
+import java.io.Serializable;
+
 public class PersonInfo {
 
-	private int id;
+    private Serializable id;
 
-	private String account;
+    private String account;
 
-	public String getAccount() {
-		return account;
-	}
+    public String getAccount() {
+        return account;
+    }
 
-	public void setAccount(String account) {
-		this.account = account;
-	}
+    public void setAccount(String account) {
+        this.account = account;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public Serializable getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(Serializable id) {
+        this.id = id;
+    }
 
-	public String toString() {
-		return account;
-	}
+    public String toString() {
+        return account;
+    }
 
 }

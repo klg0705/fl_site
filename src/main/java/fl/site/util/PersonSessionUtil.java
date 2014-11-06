@@ -22,7 +22,4 @@ public class PersonSessionUtil {
         WebUtils.setSessionAttribute(request, PERSON_INFO, personInfo);
     }
 
-    public static void removePersonInfo(HttpServletRequest request) {
-        WebUtils.setSessionAttribute(request, PERSON_INFO, null);
-    }
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -31,13 +32,16 @@ public class LoginAction extends DispatchAction {
         PersonForm personForm = (PersonForm) form;
         Person person = personService.getPerson(personForm.getPerson().getAccount(), personForm.getPassword());
 
+        if (person == null) {
+            request.setAttribute("loginError", "用户密码不正确");
+            return mapping.findForward("login");
+        }
+
         person.setIpLastActived(request.getRemoteAddr());
         person.setDateLastActived(new Date());
         personService.update(person);
 
-        if (person != null) {
-            PersonSessionUtil.setPersonInfo(request, person);
-        }
+        PersonSessionUtil.setPersonInfo(request, person);
 
         return mapping.findForward("login");
     }
@@ -45,7 +49,10 @@ public class LoginAction extends DispatchAction {
     public ActionForward logout(ActionMapping mapping, ActionForm form, HttpServletRequest request,
             HttpServletResponse response) throws Exception {
 
-        PersonSessionUtil.removePersonInfo(request);
+        HttpSession session = request.getSession();
+        if (session != null) {
+            session.invalidate();
+        }
         return mapping.findForward("logout");
     }
 

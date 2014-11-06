@@ -3,7 +3,6 @@
 
 <div style="clear:both;">
   <div>
-    <p style="display:none">${DEITY.id}</p>
     <fmt:message bundle="${ siteRes }" key="message.welcome">
       <fmt:param>${DEITY.name}</fmt:param>
     </fmt:message>

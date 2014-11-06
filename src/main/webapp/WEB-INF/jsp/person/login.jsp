@@ -12,6 +12,7 @@
           <html:errors property="person.account" />
     密码：<html:password property="password" />
           <html:errors property="password" />
+          ${ loginError }
           <html:hidden property="action" value="login" />
           <html:submit value="登陆" />
         </html:form>
