@@ -5,9 +5,11 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
 import org.apache.struts.actions.DispatchAction;
 
 import fl.site.struts.form.PersonForm;
@@ -29,8 +31,16 @@ public class PersonAction extends DispatchAction {
             HttpServletResponse response) {
 
         PersonForm personForm = (PersonForm) form;
-
         Person person = personForm.getPerson();
+
+        Person exist = personService.findPersonByAccount(person.getAccount());
+        if (exist != null) {
+            ActionErrors errors = new ActionErrors();
+            errors.add("person.account", new ActionMessage("duplicated.account"));
+            saveErrors(request, errors);
+            return mapping.findForward("fail");
+        }
+
         person.setIpCreated(request.getRemoteAddr());
         person.setIpLastActived(request.getRemoteAddr());
         person.setDateCreated(new Date());
@@ -39,7 +49,7 @@ public class PersonAction extends DispatchAction {
         personService.create(person);
         PersonSessionUtil.setPersonInfo(request, person);
 
-        return mapping.findForward("add");
+        return mapping.findForward("success");
     }
 
     public PersonService getPersonService() {

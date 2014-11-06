@@ -28,7 +28,8 @@
         </action>
         <action path="/person" input="/WEB-INF/jsp/person/addPerson.jsp" name="personForm" scope="request" parameter="action">
             <forward name="initAdd" path="/WEB-INF/jsp/person/addPerson.jsp"></forward>
-            <forward name="add" path="frontpage"></forward>
+            <forward name="success" path="frontpage"></forward>
+            <forward name="fail" path="/WEB-INF/jsp/person/addPerson.jsp"></forward>
         </action>
         <action path="/index" parameter="frontpage">
         </action>
